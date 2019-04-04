@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row alert alert-primary">
+    <h5> Bulk Event Registration</h5>
+  </div>
+</div>
+<div class="container roundcorner">
+  <div class="row">
+    <div class="col-sm-12">
+      <button mat-button class="btn btn-info" (click)="export()">
+        <i class="material-icons">get_app</i> Download Events</button> &nbsp;
+      <input type="file" (change)="onFileChange($event)" multiple="false" required>
+      <button mat-raised-button color="accent" [disabled]="disabled" (click)="bulkEventsReg()"
+        style="text-align: right">
+        <i class="material-icons">open_in_browser</i> Load Data</button> &nbsp;
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12" style="color: blue; text-align: center">
+      {{uploadMessgae}}
+    </div>
+  </div>
+
+</div>
+
+<div class="mat-elevation-z8">
+  <div class="container">
+    <div class="col-sm-12">
+      Search:
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+  </div>
+  <table mat-table [dataSource]="eventData" matSort style="width: 100%">
+
+    <ng-container matColumnDef="benName" style="width: 22%">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Beneficiary Name </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.benName}} | {{data.baseLocation}} <br>
+        {{data.address}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="council" style="width: 18%">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Council </th>
+      <td mat-cell *matCellDef="let data"> {{data.council}} </td>
+    </ng-container>
+    <ng-container matColumnDef="project" style="width: 18%">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Project </th>
+      <td mat-cell *matCellDef="let data"> {{data.projectName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="eventCat" style="width: 18%">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.eventCat}} | <br>
+        {{data.eventTitle}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="numberOfVol" style="width: 10%">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> # Vol </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.numberOfVol}}
+      </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let data; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 25]" showFirstLastButtons></mat-paginator>
+
+</div>

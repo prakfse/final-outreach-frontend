@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row alert alert-primary">
+    <h5> Update User Details </h5>
+  </div>
+</div>
+<form [formGroup]="userProfileForm">
+  <div class="container roundcorner">
+
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="First Name" appControlFirstChar="firstName" maxlength="20"
+            formControlName="firstName" required>
+          <mat-error *ngIf="userProfileForm.get('firstName').touched && 
+              hasError('firstName', 'notAChar')">First letter should be a character</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" appControlFirstChar="lastName" maxlength="20"
+            formControlName="lastName" required>
+          <mat-error *ngIf="userProfileForm.get('lastName').touched && 
+             hasError('lastName', 'notAChar')">First letter should be a character</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email ID" maxlength="30" formControlName="email" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Display Name" maxlength="30" appControlFirstChar="displayName"
+            formControlName="displayName" required>
+          <mat-error *ngIf="userProfileForm.get('displayName').touched && 
+             hasError('displayName', 'notAChar')">First letter should be a character</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Business Unit Name" maxlength="50" appControlFirstChar="buName"
+            formControlName="buName" required>
+        </mat-form-field>
+        <div class="optionBtn">
+          <label>User Type: </label>
+          <mat-radio-group formControlName="role" [(ngModel)]="selectedUserType">
+            <mat-radio-button class="example-radio-button" *ngFor="let uType of UserTypes" value="{{uType}}">
+              {{uType}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="optionBtn">
+          <label>is User Active?: </label>
+          <mat-radio-group formControlName="userStatus" [(ngModel)]="uStatus">
+            <mat-radio-button class="example-radio-button" *ngFor="let status of UserStatus" value="{{status}}">
+              {{status}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container roundcorner">
+    <div class="row">
+      <div class="col-sm-12" style="text-align: center">
+        <button mat-button [disabled]="!userProfileForm.valid" class="btn btn-primary" (click)="updateUser()">
+          <i class="material-icons">input</i> Update</button> &nbsp;
+        <button mat-button mat-raised-button color="warn" (click)="resetForm()"> <i class="material-icons">restore</i>
+          Reset</button> &nbsp;
+        <button mat-raised-button class="btn btn-info" routerLink="/userlist">
+          <i class="material-icons">highlight_off</i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>

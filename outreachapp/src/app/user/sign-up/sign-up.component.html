@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row alert alert-primary">
+    <h5> User Registration </h5>
+  </div>
+</div>
+<form [formGroup]="signupForm">
+  <div class="container roundcorner">
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="First Name" maxlength="20" formControlName="firstName"
+            appControlFirstChar="firstName" required>
+          <mat-error *ngIf="signupForm.get('firstName').touched && 
+            hasError('firstName', 'notAChar')">First letter should be a character</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" maxlength="20" appControlFirstChar="lastName"
+            formControlName="lastName" required>
+          <mat-error *ngIf="signupForm.get('lastName').touched && 
+            hasError('lastName', 'notAChar')">First letter should be a character</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Employee ID" maxlength="6" type="number" formControlName="empId" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email ID" maxlength="50" appCompareControlValidator="email"
+            formControlName="email" required>
+          <mat-error *ngIf="signupForm.get('email').touched && 
+            hasError('email', 'notAChar')">First letter should be a character</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Password" minlength="6" maxlength="10" id="password" formControlName="password"
+            type="password" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Confirm Password" appCompareControlValidator='password'
+            formControlName="confirmPassword" type="password" required>
+          <mat-error *ngIf="signupForm.get('confirmPassword').touched && 
+                              !signupForm.get('confirmPassword').valid?.notEqual &&
+                              !signupForm.get('confirmPassword').valid?.required">Password and Confirm Password does
+            not match</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Display Name" maxlength="30" appControlFirstChar="displayName"
+            formControlName="displayName" required>
+          <mat-error *ngIf="signupForm.get('displayName').touched && 
+              hasError('displayName', 'notAChar')">First letter should be a character</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Business Unit Name" maxlength="50" appControlFirstChar="buName"
+            formControlName="buName" required>
+        </mat-form-field>
+
+      </div>
+    </div>
+  </div>
+  <div class="container roundcorner">
+    <div class="row">
+      <div class="col-sm-12" style="text-align: center !important">
+        <button mat-button [disabled]="!signupForm.valid" id="mat-button-8" class="btn btn-primary" (click)="addUser()">
+          <i class="material-icons">input</i> Submit</button> &nbsp;
+        <button mat-raised-button mat-raised-button color="warn" (click)="resetForm()">
+          <i class="material-icons">restore</i> Reset</button> &nbsp;
+        <button mat-raised-button class="btn btn-info" (click)="cancel()">
+          <i class="material-icons">highlight_off</i> Cancel</button>
+
+      </div>
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,25 @@
+mat-form-field {
+    width: 100%;
+  }
+
+mat-card{
+    /* max-width: 400px; */
+    text-align: center;
+    background-color: aliceblue;
+}
+
+mat-form-field.mat-form-field {
+  font-size: 13px;
+}
+button{
+  font-size: 13px;
+}
+
+div.roundcorner {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  border-color:rgb(211, 224, 238);
+}

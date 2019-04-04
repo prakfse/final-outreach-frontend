@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="updateUserForm">
+        <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstName" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastName" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email ID" formControlName="email" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Display Name" formControlName="displayName" required>
+        </mat-form-field>
+        <div>
+          <button mat-button [disabled]="!signupForm.valid" class="btn btn-primary" (click)="addUser()">Submit</button>
+        </div>
+        <div>
+          <div>
+            <span *ngIf="isSuccess">User has been added successfully.</span>
+          </div>
+          <mat-error>
+            <span *ngIf="!isSuccess">{{responseMessage}}</span>
+          </mat-error>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

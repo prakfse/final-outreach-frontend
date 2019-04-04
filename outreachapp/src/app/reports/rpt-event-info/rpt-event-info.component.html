@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row alert alert-primary">
+    <h5>Event Information Report</h5>
+  </div>
+</div>
+<form [formGroup]="rptEventInfo">
+  <div class="container roundcorner">
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-form-field>
+          <mat-select placeholder="Filter" formControlName="filterName" (selectionChange)="setFilterValues()">
+            <mat-option *ngFor="let eCol of eventFilterColumns" [value]="eCol.value">
+              {{eCol.column}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Filter Value" aria-label="Number" matInput formControlName="filterValue"
+            [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <mat-form-field>
+          <input matInput [matDatepicker]="startDt" placeholder="From Date" formControlName="startDt">
+          <mat-datepicker-toggle matSuffix [for]="startDt"></mat-datepicker-toggle>
+          <mat-datepicker #startDt></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-3">
+        <mat-form-field>
+          <input matInput [matDatepicker]="endDt" placeholder="To Date" formControlName="endDt">
+          <mat-datepicker-toggle matSuffix [for]="endDt"></mat-datepicker-toggle>
+          <mat-datepicker #endDt></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <button mat-button class="btn btn-primary" (click)="applyFilter()">
+          <i class="material-icons">search</i> Apply</button> &nbsp;
+        <button mat-raised-button color="warn" (click)="clearFilter()">
+          <i class="material-icons">settings_backup_restore</i> Clear</button> &nbsp;
+        <button mat-button class="btn btn-info" (click)="export()">
+          <i class="material-icons">get_app</i> Download</button>
+
+      </div>
+
+    </div>
+  </div>
+</form>
+<div class="mat-elevation-z8">
+  <!-- <div class="container">
+            <div class="col-sm-12">
+                Search: 
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+            </div>  
+     </div> -->
+  <table mat-table [dataSource]="eventData" matSort style="width: 100%">
+
+    <ng-container matColumnDef="benName" style="width: 40%">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Beneficiary Name </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.benName}} <br>
+        {{data.baseLocation}} <br>
+        {{data.address}}
+
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eventTitle" style="width: 30%">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Event Info</th>
+      <td mat-cell *matCellDef="let data">
+        {{data.council}} <br>
+        {{data.projectName}} <br>
+        {{data.eventCat}} <br>
+        {{data.eventTitle}} <br>
+        {{data.numberOfVol}} | {{data.eventStatus}} <br>
+        {{data.startDt | date : 'medium'}} <br>
+        {{data.endDt | date : 'medium'}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="empName" style="width: 30%">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Reg User Info </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.empId}} <br>
+        {{data.empName}} <br>
+        {{data.buName}} <br>
+        {{data.travelHr}} | {{data.actualVolHr}} <br>
+        {{data.regDt | date : 'medium'}} <br>
+        {{data.regStatus}}
+
+
+      </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let data; columns: displayedColumns;">
+    </tr>
+    <!-- <tr mat-header-row *matHeaderRowDef="['firstName-description', 'lastName-description',
+                  'displayName-description', 'email-description']"
+                class="table-second-header-bgcolor !important">
+              </tr> -->
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 25]" showFirstLastButtons></mat-paginator>
+
+</div>

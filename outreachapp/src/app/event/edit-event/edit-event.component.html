@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row alert alert-primary">
+    <h5> Update Event Details </h5>
+  </div>
+</div>
+<form [formGroup]="editEventForm">
+  <div class="container roundcorner">
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field>
+          <input matInput placeholder="Beneficiary Name" maxlength="50" formControlName="benName" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Base Location" maxlength="50" formControlName="baseLocation" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Council" maxlength="50" formControlName="council" required>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="Address" formControlName="address" maxlength="250" required
+            style="height: 50px;"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="POC ID" maxlength="20" formControlName="pocID" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="POC Details" maxlength="50" formControlName="pocDet" required>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field>
+          <mat-select placeholder="Project" formControlName="project" [(value)]="selectedProject"
+            (selectionChange)="onSelect($event.value)">
+            <mat-option *ngFor="let project of projectDet" [value]="project._id">{{project.projectName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Event Category" formControlName="eventCat" [(value)]="selectedECat">
+            <mat-option *ngFor="let eCat of eventCategory" [value]="eCat">{{eCat}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Event Title" maxlength="40" formControlName="eventTitle" required>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="Event Description" maxlength="150" formControlName="eventDesc" required
+            style="height: 50px;"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="number" matInput placeholder="No. Of Volunteers" maxlength="3" formControlName="numberOfVol"
+            appControlFirstChar="numberOfVol" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Transport Mode" formControlName="transMod">
+            <mat-option *ngFor="let tMode of transMode" value="{{tMode}}">{{tMode}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field>
+          <textarea matInput placeholder="Boarding Point" maxlength="200" formControlName="boardingPtDet" required
+            style="height:50px;"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="Droping Point" maxlength="=200" formControlName="droppingPtDet" required
+            style="height: 50px;"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="startDt" placeholder="Start Date" formControlName="startDt">
+          <mat-datepicker-toggle matSuffix [for]="startDt"></mat-datepicker-toggle>
+          <mat-datepicker #startDt></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="endDt" placeholder="End Date" formControlName="endDt">
+          <mat-datepicker-toggle matSuffix [for]="endDt"></mat-datepicker-toggle>
+          <mat-datepicker #endDt></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="visibleDt" placeholder="Visible Date" formControlName="visibleDt">
+          <mat-datepicker-toggle matSuffix [for]="visibleDt"></mat-datepicker-toggle>
+          <mat-datepicker #visibleDt></mat-datepicker>
+        </mat-form-field>
+        <mat-checkbox formControlName="isFavorite" [(ngModel)]="editEventForm.value.isFavorite"> Favorite Event
+        </mat-checkbox>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="container roundcorner">
+    <div class="row">
+      <div class="col-sm-12" style="text-align: center">
+        <button mat-button [disabled]="!editEventForm.valid" class="btn btn-primary" (click)="updateEvent()">
+          <i class="material-icons">input</i> Update</button> &nbsp;
+        <button mat-button mat-raised-button color="warn" (click)="resetForm()">
+          <i class="material-icons">restore</i> Reset</button> &nbsp;
+        <button mat-raised-button class="btn btn-info" routerLink="/eventlist">
+          <i class="material-icons">highlight_off</i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>

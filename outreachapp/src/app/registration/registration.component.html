@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row alert alert-primary">
+    <h5> Event Registration</h5>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <div class="container roundcorner">
+    <div class="row">
+      <div class="col-md-4">
+        <span style="color: mediumblue"> Beneficiary Name: </span> <span> {{benName}} </span><br> <br>
+        <span style="color: mediumblue"> Location:</span><span> {{baseLocation}}</span> <br>
+        <span style="color: mediumblue">Council Name:</span><span> {{council}} </span> <br>
+        <span style="color: mediumblue">Address: </span><span>{{address}} </span><br>
+        <span style="color: mediumblue"> POC ID: </span><span>{{pocID }} </span><br>
+      </div>
+      <div class="col-md-4">
+        <span style="color: mediumblue"> POC Details: </span><span>{{pocDet}} </span><br>
+        <span style="color: mediumblue">Project Name: </span><span>{{project }} </span><br>
+        <span style="color: mediumblue">Event Category: </span><span>{{eventCat}} </span><br>
+        <span style="color: mediumblue">Event Title: </span><span>{{eventTitle}} </span> <br>
+        <span style="color: mediumblue">Event Description: </span><span>{{eventDesc}} </span><br>
+        <span style="color: mediumblue">Total # of Volunteers: </span><span>{{numberOfVol}} </span><br>
+        <span style="color: mediumblue">Mode of Transport: </span><span>{{tMod}} </span>
+      </div>
+      <div class="col-md-4">
+        <span style="color: mediumblue"> Start Date : </span><span>{{startDt | date: 'medium'}} </span><br>
+        <span style="color: mediumblue">End Date: </span><span>{{endDt | date: 'medium'}}</span> <br>
+        <span style="color: mediumblue">Visible Date:</span><span> {{visibleDt }} </span><br>
+        <span style="color: mediumblue">Is Favorite Event: </span><span> {{isFavorite }} </span><br>
+        <span style="color: mediumblue">Boarding Point Details: </span><span>{{boardingPtDet}} </span><br>
+        <span style="color: mediumblue"> Dropping point Details: </span><span>{{droppingPtDet}} </span><br>
+      </div>
+    </div>
+  </div>
+</div>
+<form [formGroup]="registerEvent">
+  <div class="container roundcorner">
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-form-field>
+          <mat-select placeholder="Transport Mode" formControlName="transMod" [(value)]="tMod"
+            (selectionChange)="onSelect($event.value)">
+            <mat-option *ngFor="let tMode of transMode" value="{{tMode}}">{{tMode}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col sm-4">
+        <mat-form-field>
+          <textarea matInput placeholder="Boarding Point" [disabled]="isDisabled" maxlength="200"
+            formControlName="boardingPtDet" #boardingPtDet required style="height: 50px;"></textarea>
+          <mat-hint align="end">{{boardingPtDet.value.length}} / 200</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field>
+          <textarea matInput placeholder="Droping Point" [disabled]="isDisabled" maxlength="=200"
+            formControlName="droppingPtDet" required style="height: 50px;"></textarea>
+          <mat-hint align="end">{{boardingPtDet.value.length}} / 200</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="container roundcorner">
+    <div class="row">
+      <div class="col-sm-12" style="text-align: center !important">
+        <button mat-button class="btn btn-primary" [disabled]="!registerEvent.valid" (click)="registerUser()">
+          <i class="material-icons">input</i> Submit</button> &nbsp;
+        <button mat-button mat-raised-button color="warn" (click)="resetForm()">
+          <i class="material-icons">restore</i> Reset</button> &nbsp;
+        <button mat-button class="btn btn-info" (click)="cancel()">
+          <i class="material-icons">highlight_off</i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>

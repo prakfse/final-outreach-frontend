@@ -1,0 +1,47 @@
+mat-form-field.mat-form-field {
+    font-size: 16px;
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  mat-form-field {
+    width: 80%;
+  }
+  
+  div.roundcorner {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color:rgb(211, 224, 238);
+}
+  .example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+  .optionBtn{
+    font-size:13px;
+  }
+  .example-selected-value {
+    margin: 15px 0;
+  }
+  mat-form-field.mat-form-field {
+    font-size: 13px;
+  }
+  button{
+    font-size: 13px;
+  }
+ 

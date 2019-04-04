@@ -1,0 +1,48 @@
+<div class="container ">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="container">
+        <div class="row alert alert-primary">
+          <h5>Outreach Volunteering Marathon App Signin</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="roundcorner">
+        <form [formGroup]="signinForm">
+          <div *ngIf="responseMessage" style="font-size: 16px; color: red; margin: 5x; text-align: center">
+            {{responseMessage}}
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Email ID</mat-label>
+            <input matInput placeholder="Email ID" formControlName="email" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="container roundcorner" style="text-align: center">
+
+        <button mat-button [disabled]="!signinForm.valid" class="btn btn-primary" id="mat-button-10"
+          (click)="onSubmit()"> <i class="material-icons">input</i> Submit</button> &nbsp;&nbsp;
+        <button mat-button (click)="redirectedTo()" mat-button class="btn btn-info">
+          <i class="material-icons">view_headline</i> Sign Up</button>
+
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+  </div>
+</div>

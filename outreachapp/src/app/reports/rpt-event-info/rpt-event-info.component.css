@@ -1,0 +1,64 @@
+div.roundcorner {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color:rgb(211, 224, 238);
+}
+
+mat-option{
+    font-size: 12px;
+    height: 30px;
+}
+
+.mat-table {
+    background: #fff;
+    width: 100%;    
+}
+
+tr.mat-footer-row, tr.mat-row {
+    height: 30px;
+}
+
+.mat-header-cell{
+    color: rgb(50, 40, 240);
+    font-size: 14px;
+    font-weight: 600;
+    background: #f5ddc0c5;
+}
+
+.mat-cell{
+    font-size: 12px;    
+}
+
+mat-form-field.mat-form-field {
+    font-size: 13px;
+  }
+  button{
+    font-size: 13px;
+  }
+
+.legend{
+    font-size: 12px;
+}
+/* td.mat-cell:nth-child(even){
+    background-color:#f2f4f7;
+}
+
+td.mat-cell:nth-child(odd){
+    background-color:none;
+} */
+
+.table-second-header-bgcolor{
+    background-color:#f7f7f7 !important;  
+}
+
+.mat-row:nth-child(even){
+    background-color:#e5e6e9;
+}
+
+.mat-row:nth-child(odd){
+    background-color:none;
+}
+

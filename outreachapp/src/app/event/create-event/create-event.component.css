@@ -1,0 +1,26 @@
+mat-form-field {
+    width: 90%;
+  }
+
+  
+  mat-form-field.mat-form-field {
+    font-size: 13px;
+  }
+  button{
+    font-size: 13px;
+  }
+
+  .example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+ 
+  div.roundcorner {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color:rgb(211, 224, 238);
+    font-size: 13px;
+}

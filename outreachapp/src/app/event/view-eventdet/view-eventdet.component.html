@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row alert alert-primary">
+    <h5> View Event Details</h5>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <span style="color: mediumblue"> Beneficiary Name: </span> <span> {{benName}} </span><br> <br>
+        <span style="color: mediumblue"> Location:</span><span> {{baseLocation}}</span> <br>
+        <span style="color: mediumblue">Council Name:</span><span> {{council}} </span> <br>
+        <span style="color: mediumblue">Address: </span><span>{{address}} </span><br>
+        <span style="color: mediumblue"> POC ID: </span><span>{{pocID }} </span><br>
+      </div>
+      <div class="col-md-4">
+        <span style="color: mediumblue"> POC Details: </span><span>{{pocDet}} </span><br>
+        <span style="color: mediumblue">Project Name: </span><span>{{project }} </span><br>
+        <span style="color: mediumblue">Event Category: </span><span>{{eventCat}} </span><br>
+        <span style="color: mediumblue">Event Title: </span><span>{{eventTitle}} </span> <br>
+        <span style="color: mediumblue">Event Description: </span><span>{{eventDesc}} </span><br>
+        <span style="color: mediumblue">Total # of Volunteers: </span><span>{{numberOfVol}} </span><br>
+        <span style="color: mediumblue">Mode of Transport: </span><span>{{transMod}} </span>
+      </div>
+      <div class="col-md-4">
+        <span style="color: mediumblue"> Start Date : </span><span>{{startDt | date: 'medium'}} </span><br>
+        <span style="color: mediumblue">End Date: </span><span>{{endDt | date: 'medium'}}</span> <br>
+        <span style="color: mediumblue">Visible Date:</span><span> {{visibleDt | date: 'medium'}} </span><br>
+        <span style="color: mediumblue">Is Favorite Event: </span><span> {{isFavorite }} </span><br>
+        <span style="color: mediumblue">Boarding Point Details: </span><span>{{boardingPtDet}} </span><br>
+        <span style="color: mediumblue"> Dropping point Details: </span><span>{{droppingPtDet}} </span><br>
+      </div>
+    </div>
+  </div>
+  <table mat-table [dataSource]="userData">
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef> User </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.userName}} ( {{data.empId}} )
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.email}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="regDt">
+      <th mat-header-cell *matHeaderCellDef> Registration Details </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.regDt}} <br>
+        {{data.transMod}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="regStatus">
+      <th mat-header-cell *matHeaderCellDef> Reg. Status </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.regStatus}} <br>
+        {{data.participationStatus}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="boardingPtDet">
+      <th mat-header-cell *matHeaderCellDef> Boarding & Dropping pts </th>
+      <td mat-cell *matCellDef="let data">
+        {{data.boardingPtDet}} <br>
+        {{data.droppingPtDet}}
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let data; columns: displayedColumns;">
+    </tr>
+  </table>
+</div>
+
+<div class="container roundcorner">
+  <div class="row">
+    <div class="col-sm-12" style="text-align: center !important">
+      <button mat-button class="btn btn-primary" routerLink="/eventlist"><i
+          class="material-icons">settings_backup_restore</i> Go Back</button> &nbsp;
+    </div>
+  </div>
+</div>

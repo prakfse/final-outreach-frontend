@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row alert alert-primary">
+    <h5> Event Management</h5>
+  </div>
+</div>
+<div class="container roundcorner">
+  <div class="row">
+    <div class="col-sm-12">
+      <button mat-raised-button color="primary" (click)="updateBulkEvent('Approved');">
+        <i class="material-icons">check_circle_outline</i> Approve</button> &nbsp;&nbsp;
+      <button mat-raised-button color="warn" (click)="updateBulkEvent('Rejected');">
+        <i class="material-icons">highlight_off</i> Reject</button>
+    </div>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" style="margin: 10px">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)" style="margin: 10px">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="benName">
+      <th mat-header-cell *matHeaderCellDef> BenName </th>
+      <td mat-cell *matCellDef="let element"> {{element.benName}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="council">
+      <th mat-header-cell *matHeaderCellDef> Council </th>
+      <td mat-cell *matCellDef="let element"> {{element.council}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="project">
+      <th mat-header-cell *matHeaderCellDef> Project </th>
+      <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="eventCat">
+      <th mat-header-cell *matHeaderCellDef> Event </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.eventCat}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eventStatus">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.eventStatus}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 25]" showFirstLastButtons></mat-paginator>
+
+</div>
